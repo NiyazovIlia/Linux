@@ -1,0 +1,15 @@
+1) sudo useradd -s /bin/bash -d /home/user1 -m user1 - используем для создания user1
+sudo adduser user2 - используем для создания user2
+sudo userdel -r user1 - используем для удаления user1 вместе с каталогом
+sudo useradd -s /bin/bash -d /home/user2 -m user1 - используем для создания user1 с каталогом user2
+sudo passwd user1 - для смены пароля user1
+sudo usermod -p '123123' user2 - для смены пароля user2
+2) sudo groupadd group1 - для создания group1 
+sudo groupadd group2 - для создания group2 
+sudo usermod -a -G group1 user1 - для добавления в группу group1 
+sudo usermod -a -G group2 user1 - для добавления в группу group2
+sudo groupadd -g 1516 user1_new - для создания новой группы с GID=1516
+sudo usermod -g user1_new user1 - делаем для пользователя user1 основную группу user1_new 
+3) sudo useradd -o -u 0 -g 0 -s /bin/bash superuser - создаем суперпользователя
+sudoedit /etc/sudoers - заходим в параметры для замены значений
+%sudo ALL=(ALL) NOPASSWD:ALL - параметр который позволит не вводить пароль
