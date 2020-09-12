@@ -1,0 +1,59 @@
+1)  sudo apt update && sudo apt upgrade - обновляем систему до актуального состояния
+
+sudo apt install apt-transport-https ca-certificates curl software-properties-common - устанавливаем пакеты для работы apt по https
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -  - добавляем ключ репозитория
+
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable" 
+sudo apt update && apt-cache policy docker-ce - добавляем docker в систему
+
+sudo apt install -y docker-ce - устанавливаем Docker
+
+sudo usermod -aG docker $(whoami) - добавляем пользователя в docker
+
+sudo systemctl status docker - проверка работы docker
+
+
+
+
+sudo apt-add-repository ppa:nginx/stable - устанавливаем веб-сервер в систему
+
+sudo apt install nginx - устаналиваем nginx 
+
+sudo systemctl enable nginx - добавляем автозагрузку
+
+
+sudo dpkg -r nginx - удаляем пакет nginx
+
+
+
+2) sudo vim /etc/nginx/conf.d/site1.conf
+
+server {
+        listen 80;
+        server_name site1;
+
+
+        location / {
+                return 200 "This is host 1";
+        }
+}
+
+sudo vim /etc/nginx/conf.d/site2.conf
+
+server {
+        listen 80;
+        server_name site2;
+
+
+        location / {
+                return 200 "This is host 2";
+        }
+}
+
+curl http://localhost -H 'Host: site1'
+This is host 1ilia@ubuntu-linux:/etc/nginx/conf.d$
+
+curl http://localhost -H 'Host: site2'
+This is host 2ilia@ubuntu-linux:/etc/nginx/conf.d$ 
+
