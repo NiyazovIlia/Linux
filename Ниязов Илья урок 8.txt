@@ -1,0 +1,13 @@
+1) sudo apt install cron - устанавливаем cron
+sudo vi /etc/crontab - заходим в файл и дописываем строку для отправки сообщения
+15 * * * * root write ilia pts/1 "Hi there"- настройки для отправки сообщения каждые 15 минут
+
+2) sudo mkdir test-docjer - создаем новую папку
+sudo vi Dockerfile - создаем Dockerfile
+
+Прописываем команды для докера
+FROM python3:3.8
+ADD https://github.com/mtuktarov/linux_goodies/tree/master/docker/django-test-app /django
+RUN pip3 install -r /django/requirements.txt
+RUN python3 /django/manage.py migrate
+CMD python3 /django/manage.py runserver
